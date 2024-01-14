@@ -1,0 +1,15 @@
+fastapi==0.100.0
+psycopg2-binary==2.9.6
+alembic==1.11.1
+pandas==2.0.3
+uvicorn==0.22.0
+databases==0.7.0
+asyncpg==0.28.0
+SecretStorage==3.3.3
+SQLAlchemy==1.4.49
+pydantic==1.10.2
+python-dotenv==1.0.0
+python-multipart==0.0.5
+Pillow==9.1.1
+geopy==2.3.0
+ipython==8.14.0
