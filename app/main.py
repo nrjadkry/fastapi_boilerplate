@@ -25,7 +25,6 @@ logger = logging.getLogger(__name__)
 def get_application() -> FastAPI:
     """Get the FastAPI app instance, with settings."""
     _app = FastAPI(
-        # docs_url=f"{settings.get_api_v2_str()}/docs", redoc_url=f"{settings.get_api_v2_str()}/redoc",
         title=settings.APP_NAME,
         description="Fast api boilerplate",
         debug=settings.DEBUG,
