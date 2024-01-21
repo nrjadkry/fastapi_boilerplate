@@ -116,5 +116,5 @@ docker-compose.yml
 snippets.py
 _redis_data
 redis
-logs
+logs/
 postgres_data/
