@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
+from app.auth import auth_routes
 
 # Logging
 logging.basicConfig(
@@ -38,6 +39,7 @@ def get_application() -> FastAPI:
         allow_headers=["*"],
     )
 
+    _app.include_router(auth_routes.router)
 
     return _app
 
@@ -46,6 +48,6 @@ def get_application() -> FastAPI:
 app = get_application()
 
 
-# @app.get("/")
-# def hello():
-#     return {"hello":"world"}
+@app.get("/")
+def hello():
+    return {"hello":"world"}
