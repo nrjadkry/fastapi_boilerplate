@@ -3,11 +3,9 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 from app.config import settings
 
-engine = create_engine(settings.FMTM_DB_URL.unicode_string())
+engine = create_engine(settings.DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
-Metadata = Base.metadata
 
 
 def get_db():
