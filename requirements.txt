@@ -7,9 +7,13 @@ databases==0.7.0
 asyncpg==0.28.0
 SecretStorage==3.3.3
 SQLAlchemy==1.4.49
-pydantic==1.10.2
+GeoAlchemy2==0.14.1
+pydantic==2.5.2
+pydantic-settings==2.1.0
+geojson-pydantic==1.0.1
 python-dotenv==1.0.0
 python-multipart==0.0.5
 Pillow==9.1.1
 geopy==2.3.0
 ipython==8.14.0
+werkzeug==3.0.1

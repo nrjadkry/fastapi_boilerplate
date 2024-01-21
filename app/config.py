@@ -2,7 +2,8 @@ import logging
 # from functools import lru_cache
 from typing import Any, Optional, Union
 
-from pydantic import AnyUrl, BaseSettings, validator
+from pydantic import AnyUrl, field_validator, ValidationInfo
+from pydantic_settings import BaseSettings
 
 logger = logging.getLogger(__name__)
 
@@ -16,11 +17,18 @@ class Settings(BaseSettings):
 
     EXTRA_CORS_ORIGINS: Optional[Union[str, list[AnyUrl]]]
 
-    @validator("EXTRA_CORS_ORIGINS", pre=True)
+    @field_validator("EXTRA_CORS_ORIGINS", mode="before")
+    @classmethod
     def assemble_cors_origins(
-        cls, val: Union[str, list[AnyUrl]], values: dict
-    ) -> list[str]:
+        cls,
+        val: Union[str, list[str]],
+        info: ValidationInfo,
+    ) -> Union[list[str], str]:
+        """Build and validate CORS origins list.
 
+        By default, the provided frontend URLs are included in the origins list.
+        If this variable used, the provided urls are appended to the list.
+        """
         default_origins = []
 
         if val is None:
