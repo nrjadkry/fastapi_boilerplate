@@ -39,3 +39,8 @@ class UserCreate(BaseModel):
         if not any(c.isdigit() for c in value):
             raise ValueError("Password must have at least one digit")
         return value
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"

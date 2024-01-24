@@ -1,6 +1,6 @@
+import secrets
 import logging
-# from functools import lru_cache
-from typing import Any, Optional, Union
+from typing import Optional, Union
 
 from pydantic import AnyUrl, field_validator, ValidationInfo
 from pydantic_settings import BaseSettings
@@ -16,6 +16,11 @@ class Settings(BaseSettings):
     LOG_LEVEL: str = "DEBUG"
 
     EXTRA_CORS_ORIGINS: Optional[Union[str, list[AnyUrl]]]
+    
+    # 60 minutes * 24 hours * 8 days = 8 days
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
+    SECRET_KEY: str = secrets.token_urlsafe(32)
+
 
     @field_validator("EXTRA_CORS_ORIGINS", mode="before")
     @classmethod
