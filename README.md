@@ -36,6 +36,10 @@ Before getting started, ensure you have the following installed on your system:
 
    `cp env_sample.txt .env`
 
+4. Create a docker-compose file. Update it according to your choice
+
+   `cp docker-compose.local.yml docker-compose.yml`
+
 
 5. Start the application and PostgreSQL database containers using Docker Compose:
 
