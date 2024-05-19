@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - 8001:8001
+    volumes:
+      - ./:/code
+      - ./logs/:/logs/
+    env_file:
+      - .env
+    networks:
+      - fastapi-network
+    container_name: api
+
+  db:
+    image: mdillon/postgis:11-alpine
+    restart: always
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    env_file: .env
+    networks:
+      - fastapi-network
+    container_name: db
+
+  # migrations:
+  #   container_name: migrations
+  #   depends_on:
+  #     - web
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - fastapi-network
+  #   command: ["alembic", "upgrade", "head"]
+  #   restart: "no"
+
+networks:
+  fastapi-network:
+    name: fastapi-network
+    driver: bridge
